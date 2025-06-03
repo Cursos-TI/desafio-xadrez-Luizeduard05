@@ -1,47 +1,68 @@
 #include <stdio.h>
 
-int main() {
-    int i;
-    int movimentoTorre = 5;
-    printf("Movimento da Torre (5 casas para a Direita):\n");
-    for (i = 1; i <= movimentoTorre; i++) {
-        printf("Direita\n");
-    }
-    printf("\n");
+void moverTorre(int passos) {
+    if (passos == 0) return;
+    printf("Direita\n");
+    moverTorre(passos - 1);
+}
 
-    int j = 1;
-    int movimentoBispo = 5;
-    printf("Movimento do Bispo (5 casas na Diagonal Cima Direita):\n");
-    while (j <= movimentoBispo) {
-        printf("Cima Direita\n");
-        j++;
-    }
-    printf("\n");
+void moverRainha(int passos) {
+    if (passos == 0) return;
+    printf("Esquerda\n");
+    moverRainha(passos - 1);
+}
 
-    int k = 1;
-    int movimentoRainha = 8;
-    printf("Movimento da Rainha (8 casas para a Esquerda):\n");
-    do {
-        printf("Esquerda\n");
-        k++;
-    } while (k <= movimentoRainha);
-    printf("\n");
+void moverBispo(int passos) {
+    if (passos == 0) return;
 
-    int movimentoVertical = 2;
-    int movimentoHorizontal = 1;
-    int m;
-
-    printf("Movimento do Cavalo (2 casas para Baixo, 1 casa para Esquerda):\n");
-
-    for (m = 1; m <= movimentoVertical; m++) {
-        printf("Baixo\n");
-
-        int n = 1;
-        while (n <= movimentoHorizontal && m == movimentoVertical) {
-            printf("Esquerda\n");
-            n++;
+    for (int i = 0; i < 1; i++) { 
+        for (int j = 0; j < 1; j++) { 
+            printf("Cima Direita\n");
         }
     }
+
+    moverBispo(passos - 1);
+}
+
+void moverCavalo() {
+    printf("Movimento do Cavalo (2 casas para Cima, 1 para Direita):\n");
+
+    int vertical = 2;
+    int horizontal = 1;
+    int movimentosRealizados = 0;
+
+    for (int i = 1; i <= vertical; i++) {
+        if (i == 1) {
+            printf("Cima\n");
+            continue;
+        }
+
+        if (i == 2) {
+            printf("Cima\n");
+
+            for (int j = 1; j <= horizontal; j++) {
+                if (j > 1) break;
+                printf("Direita\n");
+                movimentosRealizados++;
+            }
+        }
+    }
+}
+
+int main() {
+    printf("Movimento da Torre (5 casas para Direita):\n");
+    moverTorre(5);
+    printf("\n");
+
+    printf("Movimento do Bispo (5 casas na Diagonal Cima Direita):\n");
+    moverBispo(5);
+    printf("\n");
+
+    printf("Movimento da Rainha (8 casas para Esquerda):\n");
+    moverRainha(8);
+    printf("\n");
+
+    moverCavalo();
 
     return 0;
 }
