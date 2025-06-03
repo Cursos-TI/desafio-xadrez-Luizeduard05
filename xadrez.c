@@ -27,5 +27,21 @@ int main() {
     } while (k <= movimentoRainha);
     printf("\n");
 
+    int movimentoVertical = 2;
+    int movimentoHorizontal = 1;
+    int m;
+
+    printf("Movimento do Cavalo (2 casas para Baixo, 1 casa para Esquerda):\n");
+
+    for (m = 1; m <= movimentoVertical; m++) {
+        printf("Baixo\n");
+
+        int n = 1;
+        while (n <= movimentoHorizontal && m == movimentoVertical) {
+            printf("Esquerda\n");
+            n++;
+        }
+    }
+
     return 0;
 }
